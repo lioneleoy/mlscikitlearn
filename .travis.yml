@@ -7,7 +7,7 @@ branches:
   only:
     - master
 before_install:
-  - docker build -it mlscikitlearn .
+  - docker build -t mlscikitlearn .
 scipt:
   - docker images mlscikitlearn
 after_success:
