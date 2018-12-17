@@ -1,0 +1,17 @@
+services:
+  - docker
+language: python
+python:
+  - "2.7"
+branches:
+  only:
+    - master
+before_install:
+  - docker build -it mlscikitlearn .
+scipt:
+  - docker images mlscikitlearn
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+    docker push mlscikitlearn:latest;
+    fi
